@@ -108,9 +108,14 @@
 			white-space: nowrap;
 		}
 
-		td.pre-formatado {
-			white-space: pre-wrap;
-			font-family: Tahoma;
+		td.pre-formatado.agendamento-cell {
+			text-align: center;
+			vertical-align: middle;
+		}
+
+		td.pre-formatado.agendamento-cell i {
+			font-size: 16px;
+			line-height: 1;
 		}
 
 		.modulo-header {
@@ -336,28 +341,30 @@
 
 				(grupos[modulo] || []).forEach(r => {
 					const agendarRaw = (r.AGENDAR ?? r.Agendar ?? '').toString().trim().toUpperCase();
+					const email = (r.EMAIL ?? r.Email ?? '').toString().trim().toUpperCase();
 					const precisaAgendar = agendarRaw === 'S';
 
 					const numreq = r.NUMREQ || '';
 					const resumo = r.NOME || '';
+					const msg = 'Parametrização';
 
 					let agendamentoCell = `<td class="pre-formatado"></td>`;
 
-					if (agendarRaw === 'DC') {
-						const assunto = encodeURIComponent(`OS ${numreq} - ${resumo}`);
-						const body = encodeURIComponent(`Resumo: ${resumo}`);
+					if (email === 'DC') {
+						const assunto = encodeURIComponent(`OS ${numreq} - ${msg}`);
+						const body = encodeURIComponent(`Resumo: ${resumo}\n\nObrigado.`);
 						agendamentoCell = `
-    <td class="pre-formatado" style="text-align:center;">
+    <td class="pre-formatado agendamento-cell">
       <a href="mailto:comercial@jacsys.com.br?subject=${assunto}&body=${body}" 
          title="comercial@jacsys.com.br">
         <i class="fa-solid fa-envelope"></i>
       </a>
     </td>`;
-					} else if (agendarRaw === 'DS') {
-						const assunto = encodeURIComponent(`OS ${numreq} - ${resumo}`);
-						const body = encodeURIComponent(`Resumo: ${resumo}`);
+					} else if (email === 'DS') {
+						const assunto = encodeURIComponent(`OS ${numreq} - ${msg}`);
+						const body = encodeURIComponent(`Resumo: ${resumo}\n\nObrigado.`);
 						agendamentoCell = `
-    <td class="pre-formatado" style="text-align:center;">
+    <td class="pre-formatado agendamento-cell">
       <a href="mailto:suporte@jacsys.com.br?subject=${assunto}&body=${body}" 
          title="suporte@jacsys.com.br">
         <i class="fa-solid fa-envelope"></i>
