@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+	<meta name="author" content="John Dias - 2025" />
+	<meta name="keywords"
+		content="HTML, CSS, JavaScript, NodeJS, Descritivo de versao, Interação com o Suporte, Suporte, Jacsys, Jacsys ERP">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="theme-color" content="RGB(0,90,171)" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta charset="utf-8" />
+	<meta name="robots" content="INDEX,FOLLOW" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+	<meta http-equiv="cache-control" content="max-age=0" />
+	<meta http-equiv="cache-control" content="no-cache" />
+	<meta http-equiv="expires" content="0" />
+	<meta http-equiv="expires" content="Tue, 01 Jan 1990 12:00:00 GMT" />
+	<meta name="theme-color" content="RGB(0,90,171)" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="RGB(0,90,171)" />
+	<meta name="msapplication-navbutton-color" content="RGB(0,90,171)" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<link rel="shortcut icon" href="favicon-16x16.png" type="image/png">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+	<title>Jacsys | Descritivo de Versão</title>
+	<style>
+		body {
+			font-family: sans-serif;
+			background-color: #f4f4f4;
+			padding: 20px;
+			margin: 0;
+		}
+
+		.container {
+			background: white;
+			padding: 20px;
+			max-width: 960px;
+			margin: auto;
+			border-radius: 10px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+		}
+
+		h1 {
+			text-align: center;
+			margin-bottom: 20px;
+		}
+
+		.controls {
+			text-align: center;
+			margin-bottom: 20px;
+		}
+
+		.intro-text {
+			display: none;
+			margin: 20px auto;
+			max-width: 900px;
+			padding: 15px 20px;
+			border-left: 5px solid #007bff;
+			background: #f9f9ff;
+			font-size: 14px;
+			line-height: 1.5;
+			color: #333;
+			border-radius: 6px;
+		}
+
+		button,
+		select {
+			padding: 10px 20px;
+			margin: 5px;
+			font-weight: bold;
+			border-radius: 6px;
+			border: 1px solid #ccc;
+		}
+
+		button {
+			background-color: #007bff;
+			color: white;
+			border: none;
+			cursor: pointer;
+		}
+
+		button:hover {
+			background-color: #0056b3;
+		}
+
+		table {
+			width: 100%;
+			border-collapse: collapse;
+			margin-top: 10px;
+			background: white;
+		}
+
+		th,
+		td {
+			border: 1px solid #ccc;
+			padding: 8px;
+			vertical-align: top;
+		}
+
+		th {
+			background: #eee;
+		}
+
+		th.nowrap,
+		td.nowrap {
+			white-space: nowrap;
+		}
+
+		td.pre-formatado {
+			white-space: pre-wrap;
+			font-family: Tahoma;
+		}
+
+		.modulo-header {
+			background: #007bff;
+			color: white;
+			font-weight: bold;
+			padding: 10px;
+		}
+
+		.background {
+			position: fixed;
+			width: 100%;
+			height: 100%;
+			background: url(/background.png) no-repeat;
+			background-size: auto 100%;
+			background-position: -15% 15px;
+			opacity: 0.15;
+			z-index: -1;
+			background-color: rgb(242, 242, 248);
+		}
+
+		.footer {
+			position: fixed;
+			left: 0;
+			bottom: 0;
+			width: 100%;
+			color: #262626;
+			text-align: left;
+			border-bottom: 10px solid RGB(40, 179, 75);
+		}
+
+		.footer-text {
+			padding: 2px 10px;
+			text-align: center;
+			font-size: 11px;
+			background: white;
+		}
+
+		tr.agendar-s {
+			background: #FEFFDE;
+		}
+
+		tr.agendar-s:hover {
+			background: #FFFF8E;
+		}
+
+		tr.agendar-s td:first-child {
+			border-left: 4px solid #FFFF03;
+		}
+
+		a {
+			text-decoration: none;
+			color: inherit;
+		}
+
+		.versao-cell {
+			text-align: center;
+			vertical-align: middle;
+		}
+
+		.xlsx-meta {
+			text-align: right;
+			font-size: 12px;
+			color: #555;
+			margin-top: -10px;
+			margin-bottom: 10px;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="background">
+	</div>
+	<div class="container">
+		<h1>Descritivo de Versão</h1>
+		<div class="controls">
+			<button onclick="selecionarVersao('v824')">Versão v8.24.00x</button>
+			<button onclick="selecionarVersao('v825')">Versão v8.25.00x</button>
+			<select id="moduloSelect" onchange="mostrarPorModulo()">
+				<option value="SYS">Mostrar tudo</option>
+				<option value="COM">Compra</option>
+				<option value="STK">Estoque</option>
+				<option value="FAT">Faturamento</option>
+				<option value="FIN">Financeiro</option>
+				<option value="PDV">PDV</option>
+				<option value="NFE">NFE</option>
+				<option value="EFD">EFD</option>
+				<option value="API">API de Integração</option>
+				<option value="APP">Jacsys Mobile</option>
+			</select>
+		</div>
+		<div class="intro-text">
+			<p>
+				A seguir listamos os novos recursos do Jacsys ERP, versão 2025.<br><br>
+				Informamos que, após a atualização da versão, os processos em destaque (amarelo) serão liberados gradualmente,
+				mediante contratação comercial e/ou conforme nossa disponibilidade de agendamento.
+				Essa forma de implementação é necessária pois tratam-se de assuntos que exigem maior cuidado e atenção.<br><br>
+				Agradecemos a compreensão e permanecemos à disposição para apoiá-lo em cada etapa.
+			</p>
+		</div>
+		<div id="xlsx-meta" class="xlsx-meta">Carregando data da planilha…</div>
+		<table>
+			<tbody id="tabela-os"></tbody>
+		</table>
+	</div>
+	<script>
+		function atualizarIntroText() {
+			const introText = document.querySelector('.intro-text');
+			introText.style.display = (versaoAtual === 'v825') ? 'block' : 'none';
+		}
+
+		let dados = { v824: [], v825: [] };
+		let versaoAtual = 'v825';
+
+		let dadosAgrupados = { v824: {}, v825: {} };
+
+		fetch('/api/novidades')
+			.then(res => res.json())
+			.then(json => {
+
+				//	Exibir data/hora da última modificação - Sueli
+				const metaEl = document.getElementById('xlsx-meta');
+				if (json.dataModificacao) {
+					const dt = new Date(json.dataModificacao);
+					metaEl.textContent = 'Informações atualizadas em ' + dt.toLocaleString('pt-BR', {
+						dateStyle: 'short',
+						timeStyle: 'short'
+					});
+				} else {
+					metaEl.textContent = '';
+				}
+				dadosAgrupados = json;
+				atualizarIntroText();
+				mostrarPorModulo();
+			});
+
+		function getIcone(modulo) {
+			const m = modulo.toLowerCase();
+
+			if (m.includes('compra')) return '<i class="fas fa-shopping-cart"></i>';       	// COM
+			if (m.includes('estoque')) return '<i class="fas fa-box-open"></i>';           	// STK
+			if (m.includes('financeiro')) return '<i class="fas fa-coins"></i>';           	// FIN
+			if (m.includes('faturamento')) return '<i class="fas fa-file-invoice-dollar"></i>'; // FAT
+			if (m.includes('nota')) return '<i class="fas fa-receipt"></i>';               	// NFE
+			if (m.includes('efd')) return '<i class="fas fa-book"></i>';                   	// EFD
+			if (m.includes('pdv')) return '<i class="fas fa-cash-register"></i>';          	// PDV
+			if (m.includes('api')) return '<i class="fas fa-plug"></i>';                   	// API
+			if (m.includes('jacsys') || m.includes('app')) return '<i class="fas fa-mobile-alt"></i>'; // APP
+			if (m.includes('todos')) return '<i class="fas fa-list"></i>';                 	// SYS
+
+			return '<i class="fas fa-cogs"></i>'; 											// fallback
+		}
+
+		function selecionarVersao(versao) {
+			versaoAtual = versao;
+			atualizarIntroText();
+			mostrarPorModulo();
+		}
+
+		function mostrarPorModulo() {
+			const moduloSelecionado = document.getElementById('moduloSelect').value;
+			const container = document.getElementById('tabela-os');
+			container.innerHTML = '';
+
+			const grupos = dadosAgrupados[versaoAtual];
+
+			const siglaParaNome = {
+				COM: "Compra",
+				FAT: "Faturamento",
+				FIN: "Financeiro",
+				STK: "Estoque",
+				NFE: "Nota",
+				EFD: "EFD",
+				API: "API",
+				APP: "Mobile",
+				PDV: "PDV",
+				SYS: "Jacsys ERP"
+			};
+
+			const nomeModuloSelecionado = siglaParaNome[moduloSelecionado] || moduloSelecionado;
+
+			let modulosFiltrados = [];
+			if (moduloSelecionado === 'SYS') {
+				modulosFiltrados = Object.keys(grupos).sort((a, b) => a.localeCompare(b, 'pt-BR'));
+			} else {
+				const nome = nomeModuloSelecionado;
+				if (grupos[nome]) modulosFiltrados = [nome];
+			}
+
+			if (modulosFiltrados.length === 0) {
+				const emptyRow = document.createElement('tr');
+				emptyRow.innerHTML = `<td colspan="5" style="text-align:center; padding: 20px;">🔎 Não há novidades para esse módulo na versão selecionada.</td>`;
+				container.appendChild(emptyRow);
+				return;
+			}
+
+			modulosFiltrados.forEach(modulo => {
+				const icone = getIcone(modulo);
+
+				const total = (grupos[modulo] || []).length;
+				const headerRow = document.createElement('tr');
+				const headerCell = document.createElement('td');
+				headerCell.colSpan = 5;
+				headerCell.className = 'modulo-header';
+				headerCell.innerHTML = `
+		  <div style="display:flex;justify-content:space-between;align-items:center;">
+			<span>${icone} ${modulo}</span>
+			<span style="font-weight:normal;font-size:13px;">${total} novidade${total > 1 ? 's' : ''}</span>
+		  </div>
+		`;
+				headerRow.appendChild(headerCell);
+				container.appendChild(headerRow);
+
+				const thead = document.createElement('tr');
+				thead.innerHTML = `
+		  <th class="nowrap">Nº da OS</th>
+		  <th>Resumo</th>
+		  <th>Descritivo</th>
+		  <th>Versão</th>
+		  <th>Agendamento</th>
+		`;
+				container.appendChild(thead);
+
+				(grupos[modulo] || []).forEach(r => {
+					const agendarRaw = (r.AGENDAR ?? r.Agendar ?? '').toString().trim().toUpperCase();
+					const precisaAgendar = agendarRaw === 'S';
+
+					const numreq = r.NUMREQ || '';
+					const resumo = r.NOME || '';
+					const msg = 'Parametrização';
+
+					let agendamentoCell = '';
+					const agendarCode = (r.EMAIL || '').toString().trim().toUpperCase();
+					if (agendarCode === 'DC') {
+						const assunto = encodeURIComponent(`OS ${numreq} - ${msg}`);
+						agendamentoCell = `
+			<td class="pre-formatado" style="text-align:center;">
+			  <a href="mailto:comercial@jacsys.com.br?subject=${assunto}" title="comercial@jacsys.com.br">
+				<i class="fa-solid fa-envelope"></i>
+			  </a>
+			</td>`;
+					} else if (agendarCode === 'DS') {
+						const assunto = encodeURIComponent(`OS ${numreq} - ${msg}`);
+						agendamentoCell = `
+			<td class="pre-formatado" style="text-align:center;">
+			  <a href="mailto:suporte@jacsys.com.br?subject=${assunto}" title="suporte@jacsys.com.br">
+				<i class="fa-solid fa-envelope"></i>
+			  </a>
+			</td>`;
+					} else {
+						agendamentoCell = `<td class="pre-formatado"></td>`;
+					}
+
+					const tr = document.createElement('tr');
+					if (precisaAgendar) tr.classList.add('agendar-s');
+
+					tr.innerHTML = `
+			<td>${r.NUMREQ || ''}</td>
+			<td>${r.NOME || ''}</td>
+			<td class="pre-formatado">${r.TAREFA || ''}</td>
+			<td class="pre-formatado versao-cell">${r.VERSAO || ''}</td>
+			${agendamentoCell}
+		  `;
+					container.appendChild(tr);
+				});
+			});
+		}
+
+	</script>
+	<footer class="footer">
+		<div class="footer-text">&copy; 2025 Jacsys - Todos os direitos reservados</div>
+	</footer>
+</body>
+
+</html>
