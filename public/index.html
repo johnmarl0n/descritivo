@@ -346,9 +346,11 @@
 					const agendarCode = (r.EMAIL || '').toString().trim().toUpperCase();
 					if (agendarCode === 'DC') {
 						const assunto = encodeURIComponent(`OS ${numreq} - ${msg}`);
+						const body = encodeURIComponent(`Resumo: ${resumo}\n\nObrigado.`);
 						agendamentoCell = `
 			<td class="pre-formatado" style="text-align:center;">
-			  <a href="mailto:comercial@jacsys.com.br?subject=${assunto}" title="comercial@jacsys.com.br">
+			  <a href="mailto:comercial@jacsys.com.br?subject=${assunto}&body=${body}" 
+					title="comercial@jacsys.com.br">
 				<i class="fa-solid fa-envelope"></i>
 			  </a>
 			</td>`;
@@ -356,7 +358,8 @@
 						const assunto = encodeURIComponent(`OS ${numreq} - ${msg}`);
 						agendamentoCell = `
 			<td class="pre-formatado" style="text-align:center;">
-			  <a href="mailto:suporte@jacsys.com.br?subject=${assunto}" title="suporte@jacsys.com.br">
+			  <a href="mailto:suporte@jacsys.com.br?subject=${assunto}&body=${body}" 
+					title="suporte@jacsys.com.br">
 				<i class="fa-solid fa-envelope"></i>
 			  </a>
 			</td>`;
