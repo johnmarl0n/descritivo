@@ -21,7 +21,7 @@
 	<meta name="theme-color" content="RGB(0,90,171)" />
 	<meta name="apple-mobile-web-app-status-bar-style" content="RGB(0,90,171)" />
 	<meta name="msapplication-navbutton-color" content="RGB(0,90,171)" />
-	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="mobile-web-app-capable" content="yes" />
 	<link rel="shortcut icon" href="favicon-16x16.png" type="image/png">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 	<title>Jacsys | Descritivo de Versão</title>
@@ -33,6 +33,7 @@
 			margin: 0;
 		}
 
+		/*
 		.container {
 			background: white;
 			padding: 20px;
@@ -41,15 +42,42 @@
 			border-radius: 10px;
 			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 		}
+*/
+		.container {
+			background: white;
+			padding: 20px;
+			width: 100%;
+			max-width: 960px;
+			margin: auto;
+			border-radius: 10px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+			box-sizing: border-box;
+		}
 
 		h1 {
 			text-align: center;
 			margin-bottom: 20px;
 		}
 
+		/*
 		.controls {
 			text-align: center;
 			margin-bottom: 20px;
+		}
+*/
+		.controls {
+			text-align: center;
+			margin-bottom: 20px;
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			gap: 10px;
+		}
+
+		.controls button,
+		.controls select {
+			flex: 1 1 140px;
+			max-width: 200px;
 		}
 
 		.intro-text {
@@ -85,11 +113,21 @@
 			background-color: #0056b3;
 		}
 
+		/*
 		table {
 			width: 100%;
 			border-collapse: collapse;
 			margin-top: 10px;
 			background: white;
+		}
+*/
+		table {
+			width: 100%;
+			border-collapse: collapse;
+			margin-top: 10px;
+			background: white;
+			overflow-x: auto;
+			display: block;
 		}
 
 		th,
@@ -182,6 +220,60 @@
 			color: #555;
 			margin-top: -10px;
 			margin-bottom: 10px;
+		}
+
+		/*	Media query */
+		@media (max-width: 600px) {
+			body {
+				font-size: 14px;
+				padding: 10px;
+			}
+
+			.container {
+				padding: 10px;
+			}
+
+			.intro-text {
+				font-size: 13px;
+				padding: 10px;
+			}
+
+			th,
+			td {
+				font-size: 13px;
+				padding: 6px;
+			}
+
+			.xlsx-meta {
+				text-align: center;
+				font-size: 12px;
+			}
+
+			.versao-cell::before {
+				content: attr(data-versao-short);
+			}
+
+			.versao-cell {
+				font-size: 13px;
+				text-align: center;
+				vertical-align: middle;
+				white-space: nowrap;
+			}
+
+			.versao-cell span {
+				display: none;
+			}
+
+			.versao-header span,
+			.agendamento-header span {
+				display: none;
+			}
+
+			.versao-header::before,
+			.agendamento-header::before {
+				content: attr(data-short);
+				display: inline;
+			}
 		}
 	</style>
 </head>
@@ -331,12 +423,12 @@
 
 				const thead = document.createElement('tr');
 				thead.innerHTML = `
-		  <th class="nowrap">Nº da OS</th>
-		  <th>Resumo</th>
-		  <th>Descritivo</th>
-		  <th>Versão</th>
-		  <th>Agendamento</th>
-		`;
+  <th class="nowrap">Nº da OS</th>
+  <th>Resumo</th>
+  <th>Descritivo</th>
+  <th class="versao-header" data-short="V"><span>Versão</span></th>
+  <th class="agendamento-header" data-short="A"><span>Agendamento</span></th>
+`;
 				container.appendChild(thead);
 
 				(grupos[modulo] || []).forEach(r => {
@@ -381,7 +473,10 @@
 			<td>${r.NUMREQ || ''}</td>
 			<td>${r.NOME || ''}</td>
 			<td class="pre-formatado">${r.TAREFA || ''}</td>
-			<td class="pre-formatado versao-cell">${r.VERSAO || ''}</td>
+			<td class="pre-formatado versao-cell" data-versao-short="V${r.VERSAO?.includes('25') ? '25' : r.VERSAO?.includes('24') ? '24' : ''}">
+  <span>${r.VERSAO || ''}</span>
+</td>
+
 			${agendamentoCell}
 		  `;
 					container.appendChild(tr);
